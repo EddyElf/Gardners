@@ -110,3 +110,14 @@ button:hover {
     background-color: #FDFC17;
     color: black;
 }
+
+/* Ensure that selected buttons stay yellow */
+.score-button.selected {
+    background-color: yellow;
+    color: black;
+}
+
+.score-button:hover {
+    background-color: #FDFC17;
+    color: black;
+}
