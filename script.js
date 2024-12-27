@@ -245,7 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Add the "Here's how you are using your brain!" sentence
         pdf.setFont('helvetica', 'normal');
         pdf.setFontSize(16);
-        const sentenceText = "Here is how you prefer to think!";
+        const sentenceText = "Here is how you currently prefer to think!";
 
         // Calculate the width of the sentence text to center it
         const sentenceTextWidth = pdf.getTextWidth(sentenceText);
