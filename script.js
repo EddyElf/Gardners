@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const username = document.getElementById('username').value || "User";
         const app = document.getElementById('app');
         app.innerHTML = `
-            <h1>INTELLIGENCE IDENTIFIER</h1>
+            <h1>WHAT A POWERFUL MIND</h1>
             <p id="outro-text">Congratulations, ${username}!<br>Here are the parts of your brain you use the most!</p>
             <canvas id="barChart"></canvas>
         `;
