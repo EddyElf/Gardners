@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GARDNER'S INTELLIGENCE IDENTIFIER</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+    <!-- Username input section before starting the quiz -->
+    <div id="name-entry">
+        <h1>INTELLIGENCE IDENTIFIER</h1>
+        <p id="intro-text">These 64 questions are designed to help see <br>what parts of your brain you use.</p>
+        <p id="intro-text">ENTER YOUR NAME BELOW:</p>
+        <input type="text" id="username" placeholder="Your Name">
+        <button id="start-button">Start Quiz</button>
+    </div>
+
+    <!-- Main quiz content (hidden initially) -->
+    <div id="app" style="display:none;">
+        <h1>INTELLIGENCE IDENTIFIER</h1>
+        <p id="intro-text">For best results, answer each question as quickly and honestly as possible.<br>Choose how often the sentence sounds like you and hit enter.</p>
+        <textarea id="question" readonly></textarea>
+
+        <!-- The score buttons container (this is where the dynamic buttons will go) -->
+        <div id="score-buttons">
+            <button class="score-button" data-score="1">NEVER</button>
+            <button class="score-button" data-score="2">SELDOM</button>
+            <button class="score-button" data-score="3">SOMETIMES</button>
+            <button class="score-button" data-score="4">OFTEN</button>
+            <button class="score-button" data-score="5">ALWAYS</button>
+        </div>
+
+        <button id="enter-button">ENTER</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

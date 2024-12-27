@@ -1,0 +1,112 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align items to the top instead of center */
+    min-height: 100vh;
+    background-color: #3A2019;
+    color: #C10404; /* Default text color */
+}
+
+#name-entry {
+    text-align: center;
+    width: 80%;
+    max-width: 800px;
+    background: transparent; /* Match with the dark theme */
+    padding: 20px;
+    margin-top: 0; /* Remove top margin to reduce space */
+}
+
+h1 {
+    font-size: 48px; /* Adjust this value to make it as big as you want */
+    color: #C10404; /* Use the same color as your other text or change it */
+    margin-top: 20; /* Remove margin-top to reduce space above the header */
+    margin-bottom: -30px;
+    text-align: center; /* Centers the header */
+}
+
+#intro-text {
+    font-size: 36px; /* Adjust this value to your desired font size */
+    margin-bottom: 10px;
+    color: #C10404; /* Same color as the rest of the text */
+}
+
+#outro-text {
+    font-size: 36px; /* Adjust this value to your desired font size */
+    margin-bottom: 0px;
+    color: #C10404; /* Same color as the rest of the text */
+}
+
+input[type="text"] {
+    font-size: 23px; /* Input box text size */
+    weight: bold;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid #C10404;
+    margin-bottom: 20px;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+}
+
+button {
+    font-size: 18px;
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #08430B;
+    color: #FDFC17;
+    border-radius: 20px;
+    border: #FDFC17;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #FDFC17;
+    color: black; /* For better readability on yellow */
+}
+
+/* Quiz page styling */
+#app {
+    display: none; /* Initially hidden */
+    text-align: center;
+}
+
+#question {
+    width: 80%;
+    max-width: 800px;
+    height: 150px;
+    margin: 20px auto;
+    padding: 10px;
+    font-size: 36px;
+    text-align: center;
+    background-color: white;
+    color: black;
+    border-radius: 20px;
+    border: none;
+    resize: none;
+}
+
+#score-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+#enter-button {
+    font-size: 24px;
+    padding: 10px 40px;
+    background-color: #08430B;
+    color: #FDFC17;
+    border-radius: 15px;
+    border: #FDFC17;
+    cursor: pointer;
+    margin-top: 30px;
+}
+
+#enter-button:hover {
+    background-color: #FDFC17;
+    color: black;
+}
