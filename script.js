@@ -60,10 +60,23 @@ document.addEventListener('DOMContentLoaded', () => {
                     <button class="score-button" data-score="5">ALWAYS</button>
                 `;
 
+                // Highlight button functionality
                 document.querySelectorAll('.score-button').forEach(button => {
                     button.addEventListener('click', event => {
-                        playAudio('buttonsound.mp3'); 
+                        playAudio('buttonsound.mp3');
                         selectedScore = parseInt(event.target.getAttribute('data-score'));
+
+                        // Remove highlight from all buttons and reset their color
+                        document.querySelectorAll('.score-button').forEach(btn => {
+                            btn.classList.remove('highlight');
+                            btn.style.backgroundColor = ''; // Reset color
+                            btn.style.color = ''; // Reset text color
+                        });
+
+                        // Add highlight and change background color of clicked button
+                        event.target.classList.add('highlight');
+                        event.target.style.backgroundColor = 'yellow'; // Change to yellow
+                        event.target.style.color = 'black'; // Ensure the text stays black
                     });
                 });
             }
@@ -77,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const enterButton = document.getElementById('enter-button');
     if (enterButton) {
         enterButton.addEventListener('click', () => {
-            playAudio('entersound.mp3'); 
+            playAudio('entersound.mp3');
 
             if (selectedScore !== null) {
                 const category = questions[currentQuestionIndex].category;
@@ -122,7 +135,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // Scale the context to match the high resolution
         ctx.scale(dpr, dpr);
 
-
         const categoryDetails = {
             CatA: { name: "Verbal / Linguistic", color: "#F79D00" },
             CatB: { name: "Visual / Spatial", color: "#973913" },
@@ -135,14 +147,14 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         const descriptions = {
-            CatA: `If you scored high in Linguistic Intelligence, you're really good with words. This helps in jobs like writing, law, or journalism. In school, you'd probably do well in English, literature, and debate classes. To improve your linguistic intelligence further, consider reading widely across different genres and writing regularly to refine your language skills.`,
-            CatB: `If you scored high in Spatial Intelligence, you're good at understanding and creating visual stuff. This is handy for jobs like architecture, design, or art. In school, you might enjoy subjects like art, geometry, and geography. To boost your spatial intelligence, practice drawing and sketching regularly, and explore different art forms and design principles.`,
-            CatC: `If you scored high in Musical Intelligence, you have a knack for understanding music. This helps in jobs like music production, therapy, or performance. In school, you might shine in music theory, choir, or band classes. To further develop your musical intelligence, actively listen to various music genres, learn to play different instruments, and participate in musical ensembles or performances.`,
-            CatD: `If you scored high in Logical-Mathematical Intelligence, you're great at solving problems and working with numbers. This is useful in science, engineering, or math-related jobs. In school, you'd likely excel in math, science, and computer classes. To enhance your logical-mathematical intelligence, challenge yourself with complex math problems, and engage in hands-on experiments to understand scientific concepts deeply.`,
-            CatE: `If you scored high in Interpersonal Intelligence, you're great at understanding people and getting along with them. This helps in jobs like teaching, counseling, or management. In school, you might enjoy subjects like social studies, psychology, or teamwork projects. To strengthen your interpersonal intelligence, actively participate in group activities, volunteer for leadership roles, and practice empathy and active listening in your interactions with others.`,
-            CatF: `If you scored high in Naturalistic Intelligence, you have a strong connection with nature. This is useful in jobs like biology, environmental science, or farming. In school, you might enjoy subjects like biology, ecology, or outdoor education. To further develop your naturalistic intelligence, spend time outdoors exploring and observing the natural world, participate in environmental clubs or projects, and learn about conservation efforts and sustainable practices.`,
-            CatG: `If you scored high in Bodily-Kinesthetic Intelligence, you're really coordinated and good with your hands. This comes in handy for jobs like sports, dance, or surgery. In school, you might do well in physical education, dance, or shop classes. To enhance your bodily-kinesthetic intelligence, engage in physical activities that challenge your coordination and motor skills, such as sports, dance, or martial arts.`,
-            CatH: `If you scored high in Intrapersonal Intelligence, you understand yourself really well. This can be useful in jobs like counseling or writing. In school, you might do well in psychology, journaling, or self-reflection activities. To nurture your intrapersonal intelligence, spend time reflecting on your thoughts, feelings, and goals, and explore techniques like meditation or mindfulness to deepen your self-awareness.`
+            CatA: `If you scored high in Linguistic Intelligence, you're really good with words...`,
+            CatB: `If you scored high in Spatial Intelligence, you're good at understanding and creating visual stuff...`,
+            CatC: `If you scored high in Musical Intelligence, you have a knack for understanding music...`,
+            CatD: `If you scored high in Logical-Mathematical Intelligence, you're great at solving problems...`,
+            CatE: `If you scored high in Interpersonal Intelligence, you're great at understanding people...`,
+            CatF: `If you scored high in Naturalistic Intelligence, you have a strong connection with nature...`,
+            CatG: `If you scored high in Bodily-Kinesthetic Intelligence, you're really coordinated...`,
+            CatH: `If you scored high in Intrapersonal Intelligence, you understand yourself really well...`
         };
 
         const categories = Object.keys(scores);
@@ -201,7 +213,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-
         // Add a button to download results as a PDF
         const pdfButton = document.createElement('button');
         pdfButton.textContent = 'Download Results as PDF';
@@ -253,33 +264,32 @@ document.addEventListener('DOMContentLoaded', () => {
         const graphImage = canvas.toDataURL('image/png', 1.0);  // Full resolution (quality 1.0)
         const graphHeight = 80;
         pdf.addImage(graphImage, 'PNG', margin, yPosition, contentWidth, graphHeight);
-        yPosition += graphHeight + 10;
+        yPosition += graphHeight + 10;  // Add space after the chart
 
-        // Add the category descriptions
-        categories.forEach((cat) => {
-            const categoryName = categoryDetails[cat].name;
-            const description = descriptions[cat] || "No description available.";
+        // Add descriptions for each category
+        categories.forEach((category, index) => {
+            const categoryName = categoryDetails[category].name;
+            const description = descriptions[category];
 
-            if (yPosition + 30 > contentHeight) {
-                pdf.addPage();
-                yPosition = margin;
-            }
-
+            // Add the category name
+            pdf.setFontSize(14);
             pdf.setFont('helvetica', 'bold');
-            pdf.setFontSize(18);
-            pdf.text(categoryName, margin, yPosition, { maxWidth: contentWidth });
-            yPosition += 12;
+            pdf.text(categoryName, margin, yPosition);
+            yPosition += 6;
 
+            // Add the category description
             pdf.setFont('helvetica', 'normal');
-            pdf.setFontSize(13);
-            const descriptionLines = pdf.splitTextToSize(description, contentWidth);
-            pdf.text(descriptionLines, margin, yPosition);
-            yPosition += descriptionLines.length * 5 + 10;
+            pdf.setFontSize(12);
+            pdf.text(description, margin, yPosition);
+            yPosition += 15;
+
+            if (yPosition > contentHeight - 30) {
+                pdf.addPage();
+                yPosition = margin;  // Reset the yPosition to top of the page
+            }
         });
 
-        // Save the PDF
-        pdf.save('results.pdf');
+        // Save the PDF document
+        pdf.save(`${username}-Intelligence-Results.pdf`);
     }
-
-
 });
