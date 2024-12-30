@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
             appDiv.style.display = 'block';  // Show the quiz section
             fetchQuestions();
         } else {
-            playAudio('nowant.mp3');
+          
             alert('Please enter a valid name to start.');
         }
     });
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentQuestionIndex++; 
                 displayQuestion(); 
             } else {
-                playAudio('nowant.mp3');
+               
                 alert('Please select a score before clicking Enter.');
             }
         });
