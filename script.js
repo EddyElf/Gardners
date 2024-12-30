@@ -95,6 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentQuestionIndex++; 
                 displayQuestion(); 
             } else {
+                playAudio('ding.mp3');
                 alert('Please select a score before clicking Enter.');
             }
         });
